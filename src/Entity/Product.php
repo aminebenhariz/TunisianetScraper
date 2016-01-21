@@ -90,6 +90,4 @@ class Product
     {
         return $this->available;
     }
-
-
 }
