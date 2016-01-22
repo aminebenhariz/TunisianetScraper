@@ -34,6 +34,8 @@ class Scraper
 
         $crawler = $this->client->request('GET', $url);
 
+        $url = $this->client->getHistory()->current()->getUri();
+
         $title = $crawler->filter('h1 > acronym')->text();
         $reference = $crawler->filter('#hit_ref')->attr('value');
         $priceTag = $crawler->filter('#our_price_display')->text();
@@ -41,7 +43,7 @@ class Scraper
         $description = $crawler->filter('#short_description_content')->text();
         $available = $crawler->filter('form#buy_block > div')->attr('class') === 'en_stock';
 
-        $product = new Product($title, $reference, $description, $price, $available);
+        $product = new Product($title, $reference, $description, $price, $available, $url);
 
         return $product;
     }

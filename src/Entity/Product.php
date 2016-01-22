@@ -34,20 +34,27 @@ class Product
     private $available;
 
     /**
+     * @var string
+     */
+    private $url;
+
+    /**
      * Product constructor.
      * @param string $title
      * @param string $reference
      * @param string $description
      * @param float $price
      * @param bool $available
+     * @param string $url
      */
-    public function __construct($title, $reference, $description, $price, $available)
+    public function __construct($title, $reference, $description, $price, $available, $url)
     {
         $this->title = $title;
         $this->reference = $reference;
         $this->description = $description;
         $this->price = $price;
         $this->available = $available;
+        $this->url = $url;
     }
 
 
@@ -89,5 +96,13 @@ class Product
     public function isAvailable()
     {
         return $this->available;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }
