@@ -9,11 +9,6 @@ namespace AmineBenHariz\TunisianetScraper\Entity;
 class Category
 {
     /**
-     * @var string
-     */
-    private $title;
-
-    /**
      * @var int
      */
     private $id;
@@ -21,19 +16,31 @@ class Category
     /**
      * @var string
      */
+    private $title;
+
+    /**
+     * @var string
+     */
     private $url;
 
     /**
-     * Category constructor.
-     * @param string $title
-     * @param int $id
-     * @param string $url
+     * @var Product[]
      */
-    public function __construct($title, $id, $url)
+    private $products;
+
+    /**
+     * Category constructor.
+     * @param int $id
+     * @param string $title
+     * @param string $url
+     * @param Product[] $products
+     */
+    public function __construct($id, $title, $url, $products)
     {
-        $this->title = $title;
         $this->id = $id;
+        $this->title = $title;
         $this->url = $url;
+        $this->products = $products;
     }
 
     /**
@@ -58,5 +65,13 @@ class Category
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * @return Product[]
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

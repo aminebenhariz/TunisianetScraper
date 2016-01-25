@@ -26,4 +26,27 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
             $product->getUrl()
         );
     }
+
+    public function testGetCategoryById()
+    {
+        $scraper = new Scraper();
+        $category = $scraper->getCategoryById(458);
+
+        $this->assertSame('http://www.tunisianet.com.tn/458-disques-durs-internes', $category->getUrl());
+        $this->assertSame('Disques Durs Internes Neufs', $category->getTitle());
+        $this->assertSame(458, $category->getId());
+        $this->assertCount(15, $category->getProducts());
+
+        $product = $category->getProducts()[0];
+
+        $expectedProduct = $scraper->getProductById($product->getId());
+
+        $this->assertSame($expectedProduct->getId(), $product->getId());
+        $this->assertSame($expectedProduct->getTitle(), $product->getTitle());
+        $this->assertSame($expectedProduct->getReference(), $product->getReference());
+        $this->assertSame($expectedProduct->getDescription(), $product->getDescription());
+        $this->assertSame($expectedProduct->getPrice(), $product->getPrice());
+        $this->assertSame($expectedProduct->getUrl(), $product->getUrl());
+        $this->assertSame($expectedProduct->isAvailable(), $product->isAvailable());
+    }
 }

@@ -9,6 +9,11 @@ namespace AmineBenHariz\TunisianetScraper\Entity;
 class Product
 {
     /**
+     * @var int
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $title;
@@ -40,6 +45,7 @@ class Product
 
     /**
      * Product constructor.
+     * @param int $id
      * @param string $title
      * @param string $reference
      * @param string $description
@@ -47,8 +53,9 @@ class Product
      * @param bool $available
      * @param string $url
      */
-    public function __construct($title, $reference, $description, $price, $available, $url)
+    public function __construct($id, $title, $reference, $description, $price, $available, $url)
     {
+        $this->id = $id;
         $this->title = $title;
         $this->reference = $reference;
         $this->description = $description;
@@ -104,5 +111,13 @@ class Product
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
