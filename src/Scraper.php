@@ -64,8 +64,7 @@ class Scraper
         $title = $crawler->filter('title')->text();
 
 
-        $products = $crawler->filter('#produit_liste_main .ajax_block_product')->each(function (Crawler $node) {
-
+        $products = $crawler->filter('#produit_liste_main .ajax_block_product')->each(function ($node) {
             $title = $node->filter('.center_block > h2 > a')->text();
             $id = intval($node->filter("input[id^='hit_id']")->attr('value'));
             $reference = $node->filter("input[id^='hit_ref']")->attr('value');
